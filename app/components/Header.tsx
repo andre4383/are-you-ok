@@ -1,0 +1,11 @@
+import React from "react";
+
+export default function Header() {
+  return (
+    <header className="w-full py-2 px-2">
+      <h1 className="font-bold text-16pt text-gray-500 hover:text-black">
+        ok.
+      </h1>
+    </header>
+  );
+}
