@@ -9,38 +9,65 @@ export default function Home() {
 
   const textRef = useRef<HTMLHeadingElement>(null);
   const secondTextRef = useRef<HTMLHeadingElement>(null);
+  const cursorRef = useRef<HTMLSpanElement>(null);
 
   useGSAP(() => {
-    if (!textRef.current) return;
-    if (!secondTextRef.current) return;
+    if (!textRef.current || !secondTextRef.current || !cursorRef.current)
+      return;
 
-    const letters = textRef.current.querySelectorAll("span");
-
+    const letters =
+      textRef.current.querySelectorAll<HTMLSpanElement>(".letter");
     const tl = gsap.timeline();
 
-    tl.from(letters, {
-      opacity: 0,
-      stagger: 0.4,
+    letters.forEach((letter) => {
+      tl.to(letter, { opacity: 1, duration: 0.4 });
+
+      tl.to(
+        cursorRef.current,
+        {
+          x: letter.offsetLeft + letter.offsetWidth,
+          duration: 0.05,
+        },
+        "<",
+      );
     });
 
-    tl.from(secondTextRef.current, {
+    tl.to(secondTextRef.current, { opacity: 1, duration: 0.5 }, "+=0.2");
+
+    gsap.to(cursorRef.current, {
       opacity: 0,
-      stagger: 2,
+      repeat: -1,
+      yoyo: true,
+      duration: 0.5,
+      ease: "power1.inOut",
+      delay: letters.length * 0.05,
     });
   });
 
   return (
     <div className="min-h-screen flex items-center px-8">
       <div className="Header flex flex-col">
-        <h1 ref={textRef} className="text-6xl font-bold">
+        <h1
+          ref={textRef}
+          className="text-6xl font-bold flex items-center relative"
+        >
           {text.split("").map((letter, index) => (
-            <span key={index} className="inline-block">
+            <span key={index} className="letter opacity-0 relative">
               {letter === " " ? "\u00A0" : letter}
             </span>
           ))}
+
+          <span
+            ref={cursorRef}
+            className="absolute w-[3px] h-[1em] bg-current"
+            style={{ top: 0, left: 0 }}
+          />
         </h1>
 
-        <h2 ref={secondTextRef} className="text-gray-500 mt-2 text-xl">
+        <h2
+          ref={secondTextRef}
+          className="text-gray-500 mt-2 text-xl opacity-0"
+        >
           {secondText}
         </h2>
       </div>
