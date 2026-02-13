@@ -40,7 +40,7 @@ export default function Home() {
         <div className="flex flex-col">
           <h1
             ref={textRef}
-            className="text-6xl font-bold flex items-center relative"
+            className="text-6xl font-bold flex items-center relative selection:bg-black selection:text-white"
           >
             {text.split("").map((letter, index) => (
               <span key={index} className="letter opacity-0 relative">
@@ -57,7 +57,7 @@ export default function Home() {
 
           <h2
             ref={secondTextRef}
-            className="text-gray-500 mt-2 text-xl opacity-0"
+            className="text-gray-500 mt-2 text-xl opacity-0 selection:bg-gray-800 selection:text-white"
           >
             {secondText}
           </h2>
