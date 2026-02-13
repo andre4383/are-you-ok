@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Noto_Serif } from "next/font/google";
+import { Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
-const NotoSerif = Noto_Serif({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-serif",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "are you ok",
-  description: "are you ok",
+  title: "are you ok?",
+  description: "are you ok?",
 };
 
 export default function RootLayout({
@@ -19,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${NotoSerif.variable} antialiased`}>{children}</body>
+      <body className={`${cormorant.variable} antialiased`}>{children}</body>
     </html>
   );
 }
