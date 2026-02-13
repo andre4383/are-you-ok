@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 export default function Hero() {
   const text = "are you ok?";
-  const secondText = "welcome back";
+  const secondText = "click for a good message.";
   const router = useRouter();
 
   const textRef = useRef<HTMLHeadingElement>(null);
