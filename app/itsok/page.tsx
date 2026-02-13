@@ -1,6 +1,6 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, Suspense } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -17,7 +17,7 @@ const positiveMessages = [
   "You have survived 100% of your worst days. You're doing great.",
 ];
 
-export default function ItsOkPage() {
+function ItsOkContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const textRef = useRef<HTMLHeadingElement>(null);
@@ -71,5 +71,19 @@ export default function ItsOkPage() {
         </h1>
       </div>
     </div>
+  );
+}
+
+export default function ItsOkPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center">
+          Loading...
+        </div>
+      }
+    >
+      <ItsOkContent />
+    </Suspense>
   );
 }
