@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 export default function Hero() {
   const text = "are you ok?";
-  const secondText = "click for a good message.";
+  const secondText = "welcome back";
   const router = useRouter();
 
   const textRef = useRef<HTMLHeadingElement>(null);
@@ -43,13 +43,8 @@ export default function Hero() {
   });
 
   const handleClick = () => {
-    gsap.to(textRef.current, {
-      opacity: 0,
-      duration: 0.3,
-      onComplete: () => {
-        router.push("/itsok");
-      },
-    });
+    const randomIndex = Math.floor(Math.random() * 10);
+    router.push(`/itsok?msg=${randomIndex}`);
   };
 
   return (

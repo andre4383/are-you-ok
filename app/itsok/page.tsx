@@ -1,12 +1,35 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useRef } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useRef, useMemo } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
+const positiveMessages = [
+  "Our work spans beauty, real estate, and hospitality—distinct worlds connected by design and storytelling.",
+  "You are stronger than you think, braver than you believe, and more capable than you imagine.",
+  "Every day is a new beginning. Take a deep breath, smile, and start again.",
+  "Your potential is endless. Go do what you were created to do.",
+  "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.",
+  "The best time for new beginnings is now.",
+  "You are worthy of love, success, and happiness.",
+  "Progress, not perfection. Every small step forward counts.",
+  "Your story isn't over yet. Keep going.",
+  "You have survived 100% of your worst days. You're doing great.",
+];
+
 export default function ItsOkPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const textRef = useRef<HTMLHeadingElement>(null);
+
+  const message = useMemo(() => {
+    const messageIndex = searchParams.get("msg");
+    if (messageIndex !== null) {
+      const index = parseInt(messageIndex);
+      return positiveMessages[index] || positiveMessages[0];
+    }
+    return positiveMessages[0];
+  }, [searchParams]);
 
   useGSAP(() => {
     if (!textRef.current) return;
@@ -22,7 +45,7 @@ export default function ItsOkPage() {
         ease: "power2.out",
       },
     );
-  }, []);
+  }, [message]);
 
   const handleClick = () => {
     gsap.to(textRef.current, {
@@ -42,9 +65,9 @@ export default function ItsOkPage() {
         <h1
           ref={textRef}
           onClick={handleClick}
-          className="text-[clamp(3rem,7vw,6rem)] font-serif font-semibold leading-[1.15] tracking-tight text-black cursor-pointer hover:opacity-80 transition-opacity selection:bg-black selection:text-white opacity-0 indent-35"
+          className="text-[clamp(3rem,7vw,6rem)] font-serif font-semibold leading-[1.15] tracking-tight text-black cursor-pointer hover:opacity-80 transition-opacity selection:bg-black selection:text-white opacity-0 indent-16"
         >
-          Every good (you do) comes back to you.
+          {message}
         </h1>
       </div>
     </div>
