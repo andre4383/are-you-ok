@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className="flex flex-col h-screen">
       <Header />
-      <div className="flex-grow">
+      <div className="grow">
         <Hero />
       </div>
       <Footer />
