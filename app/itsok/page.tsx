@@ -12,9 +12,9 @@ const positiveMessages = [
   "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.",
   "The best time for new beginnings is now.",
   "You are worthy of love, success, and happiness.",
-  "Progress, not perfection. Every small step forward counts.",
+  "Rejecting what doesn't suit you is part of respecting yourself",
   "Your story isn't over yet. Keep going.",
-  "You have survived 100% of your worst days. You're doing great.",
+  "Every good (you do) comes back to you.",
 ];
 
 function ItsOkContent() {
