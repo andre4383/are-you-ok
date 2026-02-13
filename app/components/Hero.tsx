@@ -2,7 +2,7 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-export default function Home() {
+export default function Hero() {
   const text = "are you ok?";
   const secondText = "welcome back";
   const textRef = useRef<HTMLHeadingElement>(null);
@@ -34,7 +34,7 @@ export default function Home() {
   });
   return (
     <>
-      <div className="min-h-screen flex flex-col justify-start px-2 pt-89">
+      <div className="flex flex-col justify-center px-2 h-full">
         <div className="flex flex-col">
           <h1
             ref={textRef}
