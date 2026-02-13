@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 const positiveMessages = [
-  "Our work spans beauty, real estate, and hospitality—distinct worlds connected by design and storytelling.",
+  "Trust the timing of your life. Everything happens exactly when it's supposed to.",
   "You are stronger than you think, braver than you believe, and more capable than you imagine.",
   "Every day is a new beginning. Take a deep breath, smile, and start again.",
   "Your potential is endless. Go do what you were created to do.",
