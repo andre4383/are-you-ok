@@ -2,10 +2,12 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Hero() {
   const text = "are you ok?";
   const secondText = "welcome back";
+  const router = useRouter();
 
   const textRef = useRef<HTMLHeadingElement>(null);
   const secondTextRef = useRef<HTMLHeadingElement>(null);
@@ -40,12 +42,23 @@ export default function Hero() {
     });
   });
 
+  const handleClick = () => {
+    gsap.to(textRef.current, {
+      opacity: 0,
+      duration: 0.3,
+      onComplete: () => {
+        router.push("/itsok");
+      },
+    });
+  };
+
   return (
     <div className="flex flex-col justify-center px-2 h-full">
       <div className="flex flex-col">
         <h1
           ref={textRef}
-          className="text-9xl font-serif font-extrabold flex items-center relative selection:bg-black selection:text-white"
+          onClick={handleClick}
+          className="text-8xl font-serif font-extrabold flex items-center relative selection:bg-black selection:text-white cursor-pointer hover:opacity-80 transition-opacity"
         >
           {text.split("").map((letter, index) => (
             <span key={index} className="letter opacity-0 relative">
